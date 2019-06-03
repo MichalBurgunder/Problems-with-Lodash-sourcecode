@@ -5,11 +5,12 @@ const obj1 = [
 ];
 
 console.time();
-const obj1clone = _.clone(obj1);
+
+const obj1clone = JSON.parse(JSON.stringify(obj1));
 
 console.timeEnd();
-
-const obj1clone = _.clone(obj1);
-
+// confimraton
+console.log(obj1);
+// ==> { a: 88, b: 'hi', c: [ { a: 6, b: 'somestring', c: [Object] } ] }
 console.log(obj1clone);
 // ==> { a: 88, b: 'hi', c: [ { a: 6, b: 'somestring', c: [Object] } ] }

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "complexity-report": "^2.0.0-alpha",
     "lodash": "^4.17.11"
   }
 }
