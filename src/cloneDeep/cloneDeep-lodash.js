@@ -1,15 +1,15 @@
 const _ = require("lodash");
 
-const c = { d: 4 };
-const b = { c: c };
-const a = { b: b };
-const obj1 = { a: a };
+let suitcase = { clothes: true };
+let vacationItems = { tripleTap: true, bag: suitcase };
 
 console.time();
-const obj1clone = _.clone(obj1);
-
+const vacationItemsDeepClone = _.cloneDeep(vacationItems);
 console.timeEnd();
 
-console.log(obj1clone);
-// ==> { a: 88, b: 'hi', c: [ { a: 6, b: 'somestring', c: [Object] } ] }
-console.log(obj1clone === obj1);
+// confirmaton
+// suitcase.game = "chessSet";
+// console.log(vacationItems);
+// ==> { tripleTap: true, bag: { clothes: true, game: 'chessSet' } }
+// console.log(vacationItemsDeepClone);
+// ==> { tripleTap: true, bag: { clothes: true } }

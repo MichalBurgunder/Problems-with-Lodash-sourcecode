@@ -8,12 +8,13 @@ const _ = require("lodash");
 
 const rightPocket = ["phone", "wallet", "keys"];
 const leftPocket = rightPocket.slice();
-
-let obb = { a: { b: 888 } };
-let obbclone = _.clone(obb);
+let zz = { la: "la" };
+let obb = { a: { b: zz } };
+let obbclone = _.cloneDeep(obb);
 console.log(obb === obbclone);
 console.log(obbclone);
 obb.b = 999;
+zz.la = "al";
 console.log(obb);
 console.log(obbclone);
 // console.log(rightPocket);

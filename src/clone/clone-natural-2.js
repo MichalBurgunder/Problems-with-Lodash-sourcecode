@@ -4,10 +4,10 @@ let suitcase = { clothes: true };
 let vacationItems = { tripleTap: true, bag: suitcase };
 
 console.time();
-const vacationItemsClone = _.clone(vacationItems);
+const vacationItemsClone = Object.create(vacationItems);
 console.timeEnd();
 
-// suitcase.game = "chessSet";
+suitcase.game = "chessSet";
 // console.log(vacationItems);
 // ==> { tripleTap: true, bag: { clothes: true, game: 'chessSet' } }
 // console.log(vacationItemsClone);

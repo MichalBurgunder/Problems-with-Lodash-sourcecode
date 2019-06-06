@@ -37,9 +37,35 @@ The first method might seem nicer, especially if one is familiar with the assign
 
 It is also much more efficient: Running the two functions in two separate files, ten times each, takes on average `3.290ms` for the lodash function, while it, on avergage, takes only `4.218ms` for the custom writting function. Thus, the custom function is 28% more efficient than the lodash function.
 
+## Union
+
+This is the function that I struggle with the most. The function is aptly named, coming from set theory, although this also requires us to be more aware of hidden complexity: applying the union function on two arrays, not only puts both arrays into a single array, but it also uniquefies the elements of both arrays:
+
+```
+const _ = require("lodash");
+
+const array1 = [1, 4, "hello", 2, 999];
+const array2 = [2, "there", 4.7, "hello"];
+
+console.time();
+const finalArray = _.union(array1, array2);
+console.timeEnd();
+
+// console.log(finalArray);
+// ==> [ 1, 4, 'hello', 2, 999, 'there', 4.7 ]
+```
+
+Using the same objects, we can simply use
+
+```
+const finalArray = new Set([...array1, ...array2]);
+```
+
+to get to the same result, again with increased efficiency (0.578ms for lodash, 0.107ms for inhouse). In addition, it is also much more clear what exactly is going on.
+
 ## Clone && CloneDeep
 
-This is an intersting one, because this is a function that I use use. When first encountering Javascript many of us were blown away, and slightly disturbed at how one cannot easily create new objects:
+This is an intersting one, because this is a function that I still use. When first encountering Javascript many of us were probably a bit perturbed at how one cannot easily create new objects:
 
 ```
 let pocket = ["phone", "wallet"];
@@ -51,34 +77,53 @@ console.log(pocket === anotherPocket);
 // ==> true
 ```
 
-One ways around this ofcourse, such as the slice() function for arrays:
+If we were unlucky with the solution that we found, or if we rushed our education (such as me), then we will have probably learned the lodash solution, which duplicates any object that the function is given:
 
 ```
-const rightPocket = ["phone", "wallet", "keys"];
-const leftPocket = rightPocket.slice();
+const _ = require("lodash");
 
-console.log(rightPocket);
-// ==> [ 'phone', 'wallet', 'keys' ]
-console.log(leftPocket);
-// ==> [ 'phone', 'wallet', 'keys' ]
-console.log(rightPocket === leftPocket);
-// ==> false
+let suitcase = { clothes: true };
+let vacationItems = { tripleTap: true, bag: suitcase };
+
+const vacationItemsClone = _.clone(vacationItems);
 ```
 
-However, a function that does the job, regardless what object you are trying to clone, is the JSON.parse(JSON.stringify()) function:
+Although this solution does do the job of generating a shallow copy of the given object, it took me on average about 0.611ms to clone this item. A better solution, in my mind, is the one that does not use a foreign function, but an inhouse made function:
 
 ```
-const obj1 = [
-  { a: 88, b: "hi", c: [{ a: 6, b: "someString", c: { d: "hi" } }] }
-];
+let suitcase = { clothes: true };
+let vacationItems = { tripleTap: true, bag: suitcase };
 
-const obj1clone = JSON.parse(JSON.stringify(obj));
-
-console.log(obj1clone);
-// ==> { a: 88, b: 'hi', c: [ { a: 6, b: 'somestring', c: [Object] } ] }
-
+const vacationItemsClone = { ...vacationItems };
 ```
 
-Clearly, this is a far more complicated-looking function than the simple clone from lodash. But the beauty of this function is that it
+The spread operator helps us to achieve the same result, but with the far better efficiency of only 0.105ms. That's six times faster than the lodash function! Another, similar way of cloning, gives about the same timeframe. Ofcourse, the example given is very simple and there are likely examples out there in which my solution doesn't work. Otherwise there would be no need for the lodash function anymore.
 
-## Union
+But what about deepCloning an object, so that the inner object references are cloned as well? For this, lodash does a very clean, but again, inefficient job:
+
+```
+const _ = require("lodash");
+
+let suitcase = { clothes: true };
+let vacationItems = { tripleTap: true, bag: suitcase };
+
+console.time();
+const vacationItemsDeepClone = _.cloneDeep(vacationItems);
+```
+
+On my mac, this function takes on average 0.985ms, whereas the custom function takes only 0.197ms, five times as fast:
+
+```
+let suitcase = { clothes: true };
+let vacationItems = { tripleTap: true, bag: suitcase };
+
+console.time();
+const vacationItemsDeepClone = JSON.parse(JSON.stringify(vacationItems));
+console.timeEnd();
+```
+
+Clearly, this is a far more complicated-looking function than the simple cloneDeep from lodash. This is why I still use te cloneDeep() function from lodash, even if I admit that it is not particularly efficient. But the beauty of this, is that there is no need for the function to be this ugly; We can simply pack it into a function, and then use the function, instead of having to import lodash into our project. This way, much of the code that we write can be considered inhouse.
+
+## Conclusion
+
+Lodash is a grat Library with many resources. I have often used functions from this library, such as difference(),

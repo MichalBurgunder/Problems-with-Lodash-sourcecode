@@ -1,16 +1,15 @@
 const _ = require("lodash");
-
-const obj1 = [
-  { a: 88, b: "hi", c: [{ a: 6, b: "someString", c: { d: "hi" } }] }
-];
+const { deepClone } = require("../helpers");
+let suitcase = { clothes: true };
+let vacationItems = { tripleTap: true, bag: suitcase };
 
 console.time();
-
-const obj1clone = JSON.parse(JSON.stringify(obj1));
-
+const vacationItemsDeepClone = deepClone(vacationItems);
 console.timeEnd();
-// confimraton
-console.log(obj1);
-// ==> { a: 88, b: 'hi', c: [ { a: 6, b: 'somestring', c: [Object] } ] }
-console.log(obj1clone);
-// ==> { a: 88, b: 'hi', c: [ { a: 6, b: 'somestring', c: [Object] } ] }
+
+// confirmaton
+// suitcase.game = "chessSet";
+// console.log(vacationItems);
+// ==> { tripleTap: true, bag: { clothes: true, game: 'chessSet' } }
+// console.log(vacationItemsDeepClone);
+// ==> { tripleTap: true, bag: { clothes: true } }

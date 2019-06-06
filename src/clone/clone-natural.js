@@ -1,16 +1,16 @@
-// const _ = require("lodash");
+const _ = require("lodash");
 
-const obj1 = [
-  { a: 88, b: "hi", c: [{ a: 6, b: "someString", c: { d: "hi" } }] }
-];
+let suitcase = { clothes: true };
+let vacationItems = { tripleTap: true, bag: suitcase };
 
 console.time();
-
-const obj1clone = JSON.parse(JSON.stringify(obj1));
-
+const vacationItemsClone = { ...vacationItems };
 console.timeEnd();
-// confimraton
-console.log(obj1);
-// ==> { a: 88, b: 'hi', c: [ { a: 6, b: 'somestring', c: [Object] } ] }
-console.log(obj1clone);
-// ==> { a: 88, b: 'hi', c: [ { a: 6, b: 'somestring', c: [Object] } ] }
+
+suitcase.game = "chessSet";
+// console.log(vacationItems);
+// ==> { tripleTap: true, bag: { clothes: true, game: 'chessSet' } }
+// console.log(vacationItemsClone);
+// ==> { tripleTap: true, bag: { clothes: true, game: 'chessSet' } }
+// console.log(vacationItems === vacationItemsClone);
+// ==> false
