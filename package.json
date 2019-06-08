@@ -2,7 +2,7 @@
   "name": "lodash-experimentation",
   "version": "1.0.0",
   "description": "",
-  "main": "lodash.js",
+  "main": "README.md",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
