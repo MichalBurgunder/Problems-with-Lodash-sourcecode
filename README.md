@@ -2,9 +2,9 @@
 
 Lodash has been hailed as an essential library for Javascript, with good reason. It is a library that provides plenty of functions, some more intuitive than others, that make the job of a developer much easier. However, an overreliance on lodash can come with costs of efficiency, as well as readability of code.
 
-Before I get into the details, I need to confess, I am not a senior programmer, or engineer. I've just had about one year in the world of software engineering and coding, and perhaps I am talking out of my depth here. Nevertheless, before I started coding, I've always had a knack for writing, having written a screenplay, several short stories and a short play.
+Before I get into the details, I need to confess, I am not a senior programmer, or an engineer with a formal software background. I've had one year of experience in the world of software engineering and coding, and perhaps I am talking out of my depth here. Perhaps lodash _is_ a library that should be learned, and should be used often. However, to me, it comes with significant costs of readability.
 
-To me, writing code is very similar to writing short stories, in that in needs to readable, and dense, in order to get a point across faster. In the case of coding, there is also the aspect of code efficiency to deal with
+I've always had a knack for writing, having written a screenplay, several short stories and a short play, which is why I place a great deal of attention to code quality and readability. To me, writing code is very similar to writing short stories, in that in needs to write in a readable, and dense syntax/style, in order to get a point across faster. In the case of coding, this concept approximately translates to efficiency.
 
 Having said this, using lodash for every problem that one encounters, is I think, unnecessary. The spread operator for example, makes many of the functionalities of lodash superfluous, as well as more readable.
 
@@ -124,8 +124,8 @@ const vacationItemsDeepClone = JSON.parse(JSON.stringify(vacationItems));
 console.timeEnd();
 ```
 
-Clearly, this is a far more complicated-looking function than the simple cloneDeep from lodash, which is why I still use te cloneDeep() function from lodash. I admit that the lodash function is not particularly efficient, but it takes ones code much more readable, and you won't have to worry about JSON trying to stringify _and_ parse an awfully long object.
+Clearly, this is a far more complicated-looking function than the simple cloneDeep() from lodash, which is why I still use cloneDeep() from lodash. I admit that the lodash function is not particularly efficient, but it makes ones code much more readable and you won't have to worry about the JSON class trying to stringify _and_ parse an awfully large object.
 
 ## Conclusion
 
-Lodash is a great Library with many resources. I have often used lodash functions, such as difference() or isEqual(). However, I'm making the claim that overusing lodash, especailly for some of the functions I have mentioned, can have a negative effect on your project. Having code that consists of only lodash functions, requires new developers to learn lodash, instead of Javascript, which costs time and effort. Using library functions, where simpler functions will do, will decrease ones understanding of any given programming language, whch, in time, will decrease you effectiveness at coding.
+Lodash is a great Library with many resources. I have often used lodash functions, such as difference() or isEqual(). However, I'm making the claim that overusing lodash, especially for some of the functions I have mentioned, can have a negative effect on your project. Having code that consists of many different lodash functions, requires new developers to learn the package, instead of Javascript, which costs time and effort. Using library functions, where simpler functions will do, will decrease ones understanding of any given programming language, whch, in time, will decrease ones effectiveness at coding.
