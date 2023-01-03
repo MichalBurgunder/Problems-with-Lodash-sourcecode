@@ -1,3 +1,5 @@
+__Note: This article has first been published on [Medium](https://betterprogramming.pub/my-problem-with-lodash-7e64df8173f9) and is also available on my personal [blog](https://anotheruselessdotblog.wordpress.com/2020/08/03/example-post-3/).__
+
 # My Problem with Lodash
 
 Lodash has been hailed as an essential library for Javascript, with good reason. It is a library that provides plenty of functions, some more intuitive than others, that make the job of a developer much easier. However, an overreliance on lodash can come with costs of efficiency, as well as readability of code.
